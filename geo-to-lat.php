@@ -5,7 +5,7 @@ Plugin URI: http://wordpress.org/plugins/geo-to-lat/
 Description: Converts Georgian characters in post, term slugs and media file names to Latin characters. Based on the original plugin by Sergey Biryukov.
 Author: Dimitri Gogelia
 Author URI: https://gogelia.ge/
-Version: 1.0.19
+Version: 1.1
 */ 
 
 function ctl_sanitize_title($title) {
@@ -29,7 +29,7 @@ function ctl_sanitize_title($title) {
 		}
 	}
 
-	$term = $is_term ? $wpdb->get_var("SELECT slug FROM {$wpdb->terms} WHERE name = '$title'") : '';
+	$term = $is_term ? $wpdb->get_var($wpdb->prepare("SELECT slug FROM {$wpdb->terms} WHERE name = %s", $title)) : '';
 	if ( empty($term) ) {
 		$title = strtr($title, apply_filters('ctl_table', $geo2lat));
 		if (function_exists('iconv')){

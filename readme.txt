@@ -91,3 +91,7 @@ Based on the original plugin by Sergey Biryukov.
 
 = 1.0.19 =
 * Testing WordPress 6.9 Compatibility
+
+= 1.1 =
+* Security fix: Fixed SQL Injection vulnerability in term slug sanitization
+* Used $wpdb->prepare() for safe database queries
